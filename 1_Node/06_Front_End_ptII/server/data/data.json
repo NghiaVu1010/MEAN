@@ -1,1 +1,24 @@
-{ "mountains": [] }
+{
+    "mountains": [
+        {
+            "name": "Mt. Washington",
+            "elevation": "6288",
+            "effort": "Strenuous",
+            "img": "Washington-StoryImage_2.jpg",
+            "desc": "",
+            "lat": "44.27",
+            "lng": "-71.30",
+            "summitted": true
+        },
+        {
+            "name": "Mt. Adams",
+            "elevation": "5799",
+            "effort": "Strenuous",
+            "img": "Adams-StoryImage_2.jpg",
+            "desc": "Second highest",
+            "lat": "44.32",
+            "lng": "-71.29",
+            "summitted": false
+        }
+    ]
+}

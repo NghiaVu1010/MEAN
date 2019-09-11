@@ -1,12 +1,20 @@
-// nodemon server.js
-const http = require('http');
+// node server
+// simple HTTP Server which reads data from a JSON file and returns in the response
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
 
+//const connect = require("connect");
 const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 
+//const publicPath = '../client/';
+//const dataPath = './data/';
+
 // include routes
-const users = require('./routes/users');
+const leagues = require('./routes/leagues');
+const teams = require('./routes/teams');
 
 var app = express();
 
@@ -21,15 +29,16 @@ hbs.registerHelper('getCurrentYear', () => {
 });
 
 // Middleware
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // use routes
-app.use('/users', users);
+app.use('/leagues', leagues);
+app.use('/teams', teams);
 
 app.get('/index', (request, response) => {
-    response.render('index.hbs', {pageTitle: 'Login'});
+    response.render('index.hbs', {pageTitle: 'Iron Chef'});
 });
 
 // Error-handling middleware 
@@ -37,6 +46,7 @@ app.get('/index', (request, response) => {
 app.use((request, response, next) => {
     response.status(404).redirect('/404.html');
 });
+
 // Handle 500 response
 app.use((request, response, next) => {
     response.status(500).redirect('/error.html');

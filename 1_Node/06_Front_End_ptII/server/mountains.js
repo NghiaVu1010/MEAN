@@ -26,7 +26,7 @@ var getMountains = () => {
 };
 
 // Insert a Mountain
-var insertMountain = (name, elevation, effort, img, desc, lat, lng) => {
+var insertMountain = (name, elevation, effort, img, desc, lat, lng, summitted) => {
     var mountain = {
         name, 
         elevation, 
@@ -34,7 +34,8 @@ var insertMountain = (name, elevation, effort, img, desc, lat, lng) => {
         img, 
         desc, 
         lat, 
-        lng
+        lng,
+        summitted
     };
 
     var mountains = [];

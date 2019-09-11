@@ -55,7 +55,8 @@ $(document).ready(function() {
             "mtnImage": $('#mtnImage').val(),
             "mtnDesc": $('#mtnDesc').val(),
             "mtnLat": $('#mtnLat').val(),
-            "mtnLng": $('#mtnLng').val()
+            "mtnLng": $('#mtnLng').val(),
+            "mtnSummitted": $("#visitedCheck").prop("checked")
         };
 
         $.post("http://localhost:3000/mountain", JSON.stringify(data), function() {})

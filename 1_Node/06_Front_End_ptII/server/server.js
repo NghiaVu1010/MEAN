@@ -20,34 +20,6 @@ http.createServer((request, response) => {
     if (request.method === 'GET') {
         // GET http://localhost:3000/mountains
         if (request.url === '/mountains') {
-            /*
-            // Async with CallBack funct
-            fs.readFile('data/data.json', 'utf8', (readFileErr, data) => {
-                            if (readFileErr) {
-                                            response.statusCode = 500;
-                                            response.end();
-                            }
-                            let mountainsResp = [];
-                            let mountainData = JSON.parse(data).mountains;
-
-                            mountainData.forEach((mountain) => {
-                                            mountainsResp.push({
-                                                                    "name": mountain.name,
-                                                                    "elevation" : mountain.elevation,
-                                                                    "effort": mountain.effort,
-                                                                    "img": mountain.img,
-                                                                    "desc": mountain.desc,
-                                                                    "coords": {
-                                                                        "lat": mountain.lat,
-                                                                        "lng": mountain.lng
-                                                                    }
-                                                                });
-                            });
-                            response.statusCode = 200;
-                            response.end(JSON.stringify({"mountains": mountainsResp}));
-            }); // End CallBack
-            */
-
             // Async with Promise
             let promise = mountains.getAllMountains();
             promise.then((data) => {
@@ -63,7 +35,8 @@ http.createServer((request, response) => {
                                             "coords": {
                                                 "lat": mountain.lat,
                                                 "lng": mountain.lng
-                                            }
+                                            },
+                                            "summitted": mountain.summitted
                                         });
                 });
                 response.statusCode = 200;
@@ -110,7 +83,8 @@ http.createServer((request, response) => {
                                                         parsedData.mtnImage,
                                                         parsedData.mtnDesc,
                                                         parsedData.mtnLat,
-                                                        parsedData.mtnLng
+                                                        parsedData.mtnLng,
+                                                        parsedData.mtnSummitted
                                                     );
 
                 promise.then((data) => {

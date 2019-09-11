@@ -39,6 +39,8 @@ $(document).ready(function() {
                         cardText.className = "card-text";
 
                         let cardTextNode = document.createTextNode(mountain.desc);
+                        
+                        let cardTextNode2 = document.createTextNode(mountain.desc);
 
                         imgDiv.appendChild(cardImg);
 

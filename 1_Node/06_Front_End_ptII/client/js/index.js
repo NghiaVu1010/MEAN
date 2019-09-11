@@ -52,6 +52,9 @@ $(document).ready(function() {
                                 $('#mtnElev').html(parseInt(mountain.elevation).format());
                                 $('#mtnDiff').html(mountain.effort);
                                 $('#mtnDesc').html(mountain.desc);
+                                $('#visitedCheck').prop("checked", mountain.summitted);
+
+                                console.log(mountain);
 
                                 // Show Div
                                 $('#mtnDiv').removeClass('hidden');
