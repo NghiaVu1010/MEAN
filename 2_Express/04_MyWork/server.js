@@ -9,6 +9,10 @@ const express = require('express');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 
+const logger = require("logger").createLogger("log.text");
+let logStatus = "Failed";
+let logMsg = "";
+
 //const publicPath = '../client/';
 //const dataPath = './data/';
 
@@ -58,3 +62,5 @@ const server = http.createServer(app).listen(port);
 server.on('listening', () => {
 	console.log(`Server Listening on ${server.address().port}`);
 });
+
+//logger.info();
