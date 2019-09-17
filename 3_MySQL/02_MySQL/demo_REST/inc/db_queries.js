@@ -1,6 +1,6 @@
 function executeQuery(conn, res, qryStr) {
     return conn.query(qryStr, function(err, rows) {
-        //console.log('executing query:\n' + qryStr);
+        console.log('executing query:\n' + qryStr);
         if (err) {
             console.log('Error while performing Query.');
             console.log('Executing Query:\n' + qryStr);
@@ -43,7 +43,11 @@ module.exports = {
         if (conn) {
             var userName = req.body.user_name;
             var userPassword = req.body.user_password;
-            var qryStr = 'INSERT into user (user_name, password) values("' + userName + '", "' + userPassword + '")';
+            var userEmail = req.body.user_email;
+            
+            var qryStr = 'INSERT into user (user_name, password, email) values("' + userName + '", "' + userPassword + '", "' + userEmail + '")';
+            //var qryStr = `INSERT into user (user_name, password, email) values("${userName}", "${userPassword}", "${userEmail}")`;
+            console.log(qryStr);
             executeQuery(conn, res, qryStr);
         } else {
             res.json({
@@ -69,7 +73,13 @@ module.exports = {
         if (conn) {
             var userName = req.body.user_name;
             var userPassword = req.body.user_password;
-            var qryStr = 'UPDATE user SET password = "' + userPassword + '" WHERE user_name = "' + userName + '"';
+            var userEmail = req.body.user_email;
+            var qryStr = 'UPDATE user SET password = "' + userPassword + '", email = "' + userEmail + '" WHERE user_name = "' + userName + '"';
+            
+            // var userId = req.body.user_id;
+            // var update_type = req.body.update_type;
+            // var update_value = req.body.update_value;
+            // var qryStr = `INSERT user SET ${update_type} = "${update_value}" WHERE id = "${userId}"`;
             executeQuery(conn, res, qryStr);
         } else {
             res.json({
