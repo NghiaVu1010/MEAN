@@ -72,7 +72,7 @@ function displayUsers(usersList) {
 function persistUser(userForm, userObj, usersList) {
     $.post("http://localhost:3000/users/register", userObj, function() {})
         .done(function(user) {
-            users.push(new User(user.id, userObj.userName, userObj.email, userObj.isAdmin));
+            users.push(new User(user.id, userObj.userName, userObj.email, userObj.isAdmin, userObj.password));
             displayUsers(usersList);
             userForm.reset();
         })
@@ -99,7 +99,7 @@ function updateUser(userForm, userObj, usersList) {
         success: () => {
             deleteUserFromPage(userObj.id, usersList);
 
-            users.push(new User(userObj.id, userObj.userName, userObj.email, userObj.isAdmin));
+            users.push(new User(userObj.id, userObj.userName, userObj.email, userObj.isAdmin, userObj.password));
             displayUsers(usersList);
 
             toggleButtons();

@@ -14,12 +14,13 @@
  * @param email 
  * @param isAdmin - boolean
  */
-function User(id, userName, email, isAdmin) {
+function User(id, userName, email, isAdmin, password) {
     // Properties 
     this.id = id;
     this.userName = userName;
     this.email = email;
     this.isAdmin = isAdmin;
+    this.password = password;
 
     // Behaviors
     this.getId = () => {
@@ -34,9 +35,16 @@ function User(id, userName, email, isAdmin) {
     this.getIsAdmin = () => {
         return this.isAdmin;
     }
+    this.getPassword = () => {
+        return this.password;
+    }
 }
 
 // Create Prototype function
 User.prototype.getUser = function() {
-    return `{id: ${this.getId()}, username, ${this.getUserName()}, email, ${this.getEmail()}, isAdmin, ${this.getIsAdmin()}}`;
+    return `{id: ${this.getId()}, 
+            username, ${this.getUserName()}, 
+            email, ${this.getEmail()}, 
+            isAdmin, ${this.getIsAdmin()},
+            password, ${this.getPassword()}}`;
 }

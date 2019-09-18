@@ -23,7 +23,7 @@ var userToDelete = '';
  *
  * @return valid       - true if all input is vaild, false if input is missing
  */
-function validateInput(userName, email, msg) {
+function validateInput(userName, email, password, msg) {
     var valid = false;
 
     // Valdiate input and set error msg if required
@@ -33,6 +33,9 @@ function validateInput(userName, email, msg) {
     } else if (email.value === '') {
         msg.innerHTML = 'Please enter a email.';
         email.focus();
+    } else if (password.value === '') {
+        msg.innerHTML = 'Please enter a password.';
+        password.focus();
     } else {
         // All input is valid
         valid = true;
@@ -48,6 +51,7 @@ $(document).ready(function() {
     var userName = document.getElementById('userName');
     var email = document.getElementById('email');
     var isAdmin = document.getElementById('isAdmin');
+    var password = document.getElementById('password');
     var editBtn = document.getElementById('editBtn');
     var cancelBtn = document.getElementById('cancelBtn');
 
@@ -62,9 +66,9 @@ $(document).ready(function() {
         evt.preventDefault();
 
         // Validate input data
-        if (validateInput(userName, email, msg)) {
+        if (validateInput(userName, email, password, msg)) {
             var isAdminSelected = isAdmin.checked ? 1 : 0;
-            var userObj = { userName: userName.value, email: email.value, isAdmin: isAdminSelected };
+            var userObj = { userName: userName.value, email: email.value, isAdmin: isAdminSelected, password: password.value };
             // call funct to persist to DB
             persistUser(this, userObj, usersList);
         } else {
@@ -86,7 +90,7 @@ $(document).ready(function() {
     // Edit Button (on edit form) Click Event
     editBtn.addEventListener('click', function() {
         var isAdminSelected = isAdmin.checked ? 1 : 0;
-        var userObj = { id: parseInt(userToDelete), userName: userName.value, email: email.value, isAdmin: isAdminSelected };
+        var userObj = { id: parseInt(userToDelete), userName: userName.value, email: email.value, isAdmin: isAdminSelected, password: password.value };
         // call funct to update in DB
         updateUser(userForm, userObj, usersList);
     });
@@ -116,6 +120,7 @@ $(document).ready(function() {
                 userName.value = filteredUser[0].userName;
                 email.value = filteredUser[0].email;
                 isAdmin.checked = filteredUser[0].isAdmin;
+                password.value = filteredUser[0].password;
 
                 toggleButtons(); // utils.js
                 userName.focus();
