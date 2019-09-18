@@ -24,7 +24,8 @@ UserController.register = (req, res) => {
     userService.register({
             user_name: req.body.userName,
             email: req.body.email,
-            is_admin: req.body.isAdmin
+            is_admin: req.body.isAdmin,
+            password: req.body.password
         })
         .then((user) => {
             res.json(user);
@@ -41,7 +42,8 @@ UserController.update = (req, res) => {
             id: req.body.id,
             user_name: req.body.userName,
             email: req.body.email,
-            is_admin: req.body.isAdmin
+            is_admin: req.body.isAdmin,
+            password: req.body.password
         })
         .then((user) => {
             res.json(user);

@@ -3,6 +3,7 @@ var userRouter = express.Router();
 
 var dbConn = require('./../inc/db_connection');
 var dbQuery = require('./../inc/db_queries');
+var userController = require("../controllers/userController.js");
 
 // GET: http://localhost:3000/users/
 userRouter.get('/', function(req, res) {
@@ -44,6 +45,9 @@ userRouter.post('/login/', function(req, res) {
 
 // update
 // PUT: http://localhost:3000/users/
+userRouter.put('/', userController.postUserUpdate);
+
+/*
 userRouter.put('/', function(req, res) {
     var userName = req.body.user_name;
     var userPassword = req.body.user_password;
@@ -56,9 +60,12 @@ userRouter.put('/', function(req, res) {
             'msg': 'Bad Input: Missing login data.'
         });
     } else {
+    
         dbConn.getDbConnection(dbQuery.postUserUpdate, req, res);
     }
+    
 });
+*/
 
 /* Cool single type way
 userRouter.put('/:user_id', function(req, res) {
